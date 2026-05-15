@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body ng-app="OrderingSystem2" ng-controller="OrderingSystem2Controller">
+    <div>
+        @RenderBody()
+    </div>
+    <footer class="text-center text-muted mt-1">
+        <p>Developed by Sebastian D. Vosotros</p>
+    </footer>
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/HolyScripts/module.js"></script>
+    <script src="~/Scripts/HolyScripts/service.js"></script>
+    <script src="~/Scripts/HolyScripts/controller.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/angular-chart.min.js"></script>
+</body>
+</html>

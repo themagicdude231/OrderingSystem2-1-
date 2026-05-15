@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Views/Shared/_NormalLayoutPage.cshtml";
+}
+<link href="~/Content/1NormalMainPage.css" rel="stylesheet" />
+<main ng-init="getUserInfo();">
+    <div class="banner text-center text-white py-5 mb-4 bg-primary">
+        <div class="container">
+            <h1><b>Delicious food, delivered to you</b></h1>
+            <p class="lead">Discover the best local stores and cuisines in your area.</p>
+            <div class="search-bar mx-auto">
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" placeholder="Search for stores" ng-model="searchBar">
+                    <button class="btn btn-success" type="button" ng-click="searchBtn()">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="restaurant-category my-5" ng-init="getStoreCategory()">
+        <div class="rb-buttons mx-auto text-center">
+            <div class="d-inline-block text-start">
+                <p class="lead mb-3">Cuisines</p>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <input type="radio" name="cusine" id="all" class="btn-check" ng-value="0" ng-model="selectedCategory" ng-change="filterStoreList()">
+                    <label class="btn btn-outline-primary" for="all">All</label>
+                    <div ng-repeat="category in categories">
+                        <input type="radio" name="cusine" id="{{category.StoreCategoryDesc}}" class="btn-check" ng-value="category.StoreCategoryID" ng-model="$parent.selectedCategory" ng-change="filterStoreList()" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="{{category.StoreCategoryDesc}}">{{category.StoreCategoryDesc}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="max-width: 1200px;" ng-init="getRestoInfo()">
+        <div class="d-flex flex-wrap justify-content-center gap-4 mt-4">
+            <div ng-repeat="restoInfo in restoInfos">
+                <div class="card store-card h-100">
+                    <div class="store-img-container">
+                        <img class="store-img" ng-src="~/Content/StoreFiles/{{restoInfo.Vendors.Vendor_Store_Picture}}">
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="card-title mb-0">{{restoInfo.Vendors.Vendor_Storename}}</h5>
+                        </div>
+                        <p class="text-muted small mb-3">{{restoInfo.Store_Category.Category_Description}}</p>
+                        <p class="text-muted small mb-3">{{restoInfo.Vendors.Vendor_Store_Address}}</p>
+                        <div class="mt-auto">
+                            <button class="btn btn-outline-primary btn-sm rounded-pill w-100" ng-click="redirectFunc(4, restoInfo.Vendors.Vendor_ID)">View Menu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5" ng-if="restoInfos.length === 0">
+                <p class="text-muted">No restaurants available at the moment</p>
+            </div>
+        </div>
+    </div>
+</main>

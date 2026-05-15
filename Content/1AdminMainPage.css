@@ -1,0 +1,21 @@
+﻿.vendor-status {
+    max-width: 1100px;
+}
+.card {
+    width: 240px;
+}
+.card2 {
+    height: 360px;
+    width: 200px;
+}
+.card3 {
+    margin-top: 50px;
+    margin-left: 200px;
+    height: 400px;
+    width: 600px;
+}
+.status-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 0;
+}

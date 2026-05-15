@@ -1,0 +1,25 @@
+﻿.order-page {
+    max-width: 1200px;
+    margin: 80px auto 0 auto;
+    padding: 0 20px;
+}
+.order-management-header {
+    padding-bottom: 10px;
+}
+
+.order-card {
+    transition: all 0.2s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-2px);
+}
+
+.order-total-price {
+    font-size: 2rem;
+}
+
+.item-price {
+    min-width: 80px;
+    text-align: right;
+}

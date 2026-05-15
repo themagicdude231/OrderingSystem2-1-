@@ -1,0 +1,1 @@
+﻿var app = angular.module("OrderingSystem2", ['chart.js']);

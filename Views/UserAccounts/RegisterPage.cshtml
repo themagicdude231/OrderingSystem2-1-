@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_UserAccountLayoutPage.cshtml";
+}
+<link href="~/Content/1RegisterPage.css" rel="stylesheet" />
+<div class="container min-vh-100 d-flex align-items-center">
+    <div class="row justify-content-center w-100">
+        <div class="col-lg-5">
+            <div class="register-card card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <div class="brand-logo h4 text-uppercase text-center"><i class="bi bi-cart-check"></i>Pick N Serve</div>
+                    <h4 class="mb-3 text-center">Create Account</h4>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingFullname" placeholder="Full Name" maxlength="100" ng-change="fieldChecker(2)" ng-model="User_Fullname" required>
+                        <label for="floatingFullname">Full Name*</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingEmail" placeholder="Email Address" maxlength="254" ng-change="emailValidator()" ng-blur="emailValidator()" ng-model="User_Email" required>
+                        <label for="floatingEmail">Email Address*</label>
+                        <div class="text-danger small mt-1" ng-show="emailAlert">Email is must be valid.</div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingAddress" placeholder="Home Address" maxlength="200" ng-change="fieldChecker(2)" ng-model="User_Address" required>
+                        <label for="floatingAddress">Home Address*</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingUsername" placeholder="Username" maxlength="50" ng-blur="touchedUsername = true" ng-change="fieldChecker(2)" ng-model="User_Username" required>
+                        <label for="floatingUsername">Username*</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" maxlength="128" ng-blur="touchedPassword = true" ng-change="fieldChecker(2)" ng-model="User_Password" required>
+                        <label for="floatingPassword">Password*</label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="isVendor" ng-model="isVendorChecked">
+                        <label class="form-check-label" for="isVendor">Are you a vendor?</label>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary" ng-disabled="registerTwoWayDisable" ng-click="register(1)">
+                            {{ isVendorChecked ? 'Setup Vendor Store' : 'Register' }}
+                        </button>
+                    </div>
+                    <p class="text-muted mt-2 text-center">Already have an account?<a href="/UserAccounts/LoginPage" class="btn-login">Log In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

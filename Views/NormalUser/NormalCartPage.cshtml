@@ -1,0 +1,87 @@
+﻿@{
+    Layout = "~/Views/Shared/_NormalLayoutPage.cshtml";
+}
+<link href="~/Content/1NormalCartPage.css" rel="stylesheet" />
+<main class="cart-page py-5" ng-init="getUserInfo();">
+    <div class="page-content">
+        <div class="cart-container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                <div>
+                    <h2 class="fw-bold mb-1"><i class="bi bi-cart3 me-2 text-primary"></i>Checkout</h2>
+                    <p class="text-muted mb-0">Review your selected items before placing your order</p>
+                </div>
+            </div>
+            <div class="cart-layout">
+                <div class="cart-left">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold mb-0"><i class="bi bi-bag-check me-2 text-primary"></i>Your Orders</h5>
+                    </div>
+                    <div class="cart-item-card shadow-sm" ng-repeat="item in cartItems">
+                        <img ng-src="/Content/StoreFiles/{{item.Menu_Image}}" class="cart-thumb shadow-sm">
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <h5 class="fw-bold mb-1">{{item.Menu_Name}}</h5>
+                                    <div class="text-muted small">{{item.Menu_Description}}</div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div class="qty-controls">
+                                    <input type="number" class="qty-input" min="1" ng-change="saveOrder()" ng-model="item.Quantity">
+                                </div>
+                                <div class="fw-bold fs-5 text-dark">₱{{item.Menu_Price * item.Quantity}}</div>
+                            </div>
+                        </div>
+                        <button class="trash-btn" ng-click="deleteOrder(item.Menu_ID)"><i class="bi bi-trash3-fill"></i></button>
+                    </div>
+                    <div class="text-center mt-5" ng-if="cartItems.length === 0">
+                        <p class="text-muted">Your Cart is currently empty</p>
+                    </div>
+                </div>
+
+                <div class="cart-right">
+                    <div class="cart-sidebar-sticky">
+                        <div class="sidebar-card shadow-sm">
+                            <h6><i class="bi bi-geo-alt-fill text-primary"></i>Delivery Details</h6>
+                            <div class="info-group">
+                                <div class="info-label">Full Name</div>
+                                <div class="info-text">{{userInfo.User_Fullname}}</div>
+                            </div>
+                            <div class="info-group">
+                            <div class="info-label">Email</div>
+                                <div class="info-text">{{userInfo.User_Email}}</div>
+                            </div>
+                            <div class="info-group mb-0">
+                                <div class="info-label">Delivery Address</div>
+                                <div class="info-text">{{userInfo.User_Address}}</div>
+                            </div>
+                        </div>
+                        <div class="sidebar-card shadow-sm">
+                            <h6><i class="bi bi-credit-card-fill text-primary"></i>Payment Method</h6>
+                            <div class="payment-options">
+                                <input type="radio" id="cod" name="paymentMethod" ng-model="selectedPayment" ng-value="1" hidden>
+                                <label for="cod" class="payment-choice">
+                                    <i class="bi bi-cash-stack"></i>Cash on Delivery
+                                    <i class="bi bi-check-circle-fill text-primary" ng-if="selectedPayment == 1"></i>
+                                </label>
+                                <input type="radio" id="card" name="paymentMethod" ng-model="selectedPayment" ng-value="2" hidden>
+                                <label for="card" class="payment-choice">
+                                    <i class="bi bi-credit-card-2-back"></i>Credit Card
+                                    <i class="bi bi-check-circle-fill text-primary"ng-if="selectedPayment == 2"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="sidebar-card shadow-sm">
+                            <h6><i class="bi bi-receipt-cutoff text-primary"></i>Your Overall Order</h6>
+                            <div class="summary-total">
+                                <span>Total</span>
+                                <span class="text-success">₱{{getOverallCost()}}</span>
+                            </div>
+                            <button class="btn-checkout shadow-sm" ng-click="executeOrder()"><i class="bi bi-bag-check-fill me-2"></i>Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

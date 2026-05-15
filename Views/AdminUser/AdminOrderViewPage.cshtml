@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<link href="~/Content/1AdminOrderPage.css" rel="stylesheet" />
+<main class="order-page" ng-init="getUserInfo(); getAdminOrders();">
+    <div class="order-management-header d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">Your Orders</h2>
+            <p class="text-muted mb-0">View your Orders from your customers</p>
+        </div>
+    </div>
+    <div class="order-list-container container-fluid" ng-repeat="order in adminOrders track by order.Orders.Order_ID">
+        <div class="order-card bg-white border rounded-4 p-4 mb-4 shadow-sm">
+            <div class="order-content d-flex justify-content-between align-items-start flex-wrap gap-3">
+                <div class="left">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="badge bg-dark px-3 py-2 rounded-pill"><i class="bi bi-receipt-cutoff me-1"></i>Order #{{order.Orders.Order_ID}}</span>
+                    </div>
+                    <h4 class="order-id fw-bold mb-2">{{order.User.User_Fullname}}</h4>
+                    <div class="customer-details small text-secondary d-flex flex-column gap-1">
+                        <span class="customer-name"><i class="bi bi-person-circle me-2"></i>{{order.User.User_Username}}</span>
+                        <span class="order-timestamp"><i class="bi bi-clock-history me-2"></i>{{(order.Orders.Order_Date.replace('/Date(', '').replace(')/', '') * 1) | date:'yyyy-MM-dd hh:mm a'}}</span>
+                        <span class="order-timestamp"><i class="bi bi-geo-alt me-2"></i>{{order.User.User_Address}}</span>
+                    </div>
+                </div>
+                <div class="right text-end">
+                    <div class="text-muted small mb-1">Total Amount</div>
+                    <div class="order-total-price display-6 fw-bold text-success">₱{{order.Orders.Order_Total_Amount}}</div>
+                    <button class="btn btn-dark rounded-pill px-4 py-2 mt-3 fw-semibold shadow-sm"
+                            ng-click="markAsComplete(order.Orders.Order_ID)">
+                        <i class="bi bi-check-circle me-2"></i>
+                        Mark as Complete
+                    </button>
+                </div>
+            </div>
+            <hr class="my-4 opacity-25">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="items-section-title fw-semibold text-uppercase text-secondary small mb-0"><i class="bi bi-bag-check me-2"></i>Ordered Items</div>
+            </div>
+            <div class="order-item-list d-flex justify-content-between align-items-center p-3 rounded-3 bg-light mb-2" ng-repeat="item in order.getOrderItem track by $index">
+                <div class="d-flex align-items-center gap-3">
+                    <img ng-src="/Content/StoreFiles/{{item.Menus.Menu_Image}}" class="rounded" style="width:60px; height:60px; object-fit:cover;">
+                    <div>
+                        <div class="item-name-qty fw-semibold">{{item.OrderItem.Quantity}}x {{item.Menus.Menu_Name}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center py-5" ng-if="adminOrders.length === 0">
+        <h5 class="mt-3 text-muted">No Orders Yet</h5>
+    </div>
+</main>

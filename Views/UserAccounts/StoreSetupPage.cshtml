@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_UserAccountLayoutPage.cshtml";
+}
+<link href="~/Content/1StoreSetupPage.css" rel="stylesheet" />
+<div class="container min-vh-100 d-flex align-items-center">
+    <div class="row justify-content-center w-100">
+        <div class="col-lg-5">
+            <div class="storeSetup-card card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <div class="brand-logo h3 text-uppercase text-center">Pick N Serve</div>
+                    <h5 class="mt-4 text-center">Setup your Store</h5>
+                    <div class="vendor-section mt-4">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingStorename" placeholder="Store Name" maxlength="100" ng-change="fieldChecker(3)" ng-model="User_Storename" required>
+                            <label for="floatingStorename">Store Name*</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingStoreaddress" placeholder="Store Address" maxlength="200" ng-change="fieldChecker(3)" ng-model="User_Storeaddress" required>
+                            <label for="floatingStoreaddress">Store Address*</label>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-muted">Store Picture*</label>
+                            <input type="file" class="form-control" accept="image/*" onchange="angular.element(this).scope().storeFileChoosen(this)">
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="floatingStorecategory" ng-change="fieldChecker(3)" ng-model="User_Storecategory" required>
+                                <option value="" disabled selected>Category of your Store</option>
+                                <option value="1">Fast Food</option>
+                                <option value="2">Cafe</option>
+                                <option value="3">Desserts</option>
+                                <option value="4">Others</option>
+                                <option value="5">Bakery</option>
+                                <option value="6">Beverages</option>
+                                <option value="7">Fine Dining</option>
+                            </select>
+                            <label for="floatingStoreCategory">Store Category*</label>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary" ng-disabled="regVendorDisable" ng-click="register(2)">Register as Vendor</button>
+                        </div>
+                        <p class="text-muted mt-2 text-center">Already have an account?<a href="" ng-click="redirectFunc(3)" class="btn-login text-primary">Log In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>

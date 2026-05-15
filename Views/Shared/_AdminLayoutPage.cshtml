@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body ng-app="OrderingSystem2" ng-controller="OrderingSystem2Controller">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+            <div class="container">
+                <a class="navbar-brand" ng-click="redirectFunc(6)"><i class="bi bi-cart-check"></i>PickNServe</a>
+                <ul class="navbar-nav ms-auto gap-1">
+                    <li class="nav-item"><a class="nav-link" ng-click="redirectFunc(7)"><i class="bi bi-journal-text me-1"></i> Your Menus</a></li>
+                    <li class="nav-item"><a class="nav-link" ng-click="redirectFunc(8)"><i class="bi bi-bag-check me-1"></i> Your Orders</a></li>
+                    <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#profileModal" ng-click="getUserProfileInfos()"><i class="bi bi-person-circle"></i>{{userInfo.User_Fullname}}</a></li>
+                    <li class="nav-item"><button type="button" class="btn btn-light" ng-click="logOut()">Log Out</button></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="modal fade" id="profileModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold">{{ isUpdating ? 'Edit Profile' : 'Personal Information' }}</h5>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="text-center mb-3"><i class="bi bi-person-circle text-primary" style="font-size: 4rem;"></i></div>
+
+                    <label class="fw-bold">Full Name</label>
+                    <div ng-show="!isUpdating">{{ userProfInfo.User_Fullname }}</div>
+                    <input class="form-control mb-2" ng-show="isUpdating" ng-model="tempInfo.User_Fullname">
+
+                    <label class="fw-bold">Email</label>
+                    <div ng-show="!isUpdating">{{ userProfInfo.User_Email }}</div>
+                    <input class="form-control mb-2" ng-show="isUpdating" ng-model="tempInfo.User_Email" ng-change="validEmail()">
+                    <div class="text-danger small" ng-show="isNEmailInvalid">Please enter a valid email address</div>
+
+                    <label class="fw-bold">Address</label>
+                    <div ng-show="!isUpdating">{{ userProfInfo.User_Address }}</div>
+                    <input class="form-control mb-2" ng-show="isUpdating" ng-model="tempInfo.User_Address">
+
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="btn btn-primary" ng-if="!isUpdating" ng-click="editProfile()">Edit</button>
+                    <button class="btn btn-success" ng-if="isUpdating" ng-disabled="isNEmailInvalid" ng-click="saveNewUserInfo()">Save</button>
+                    <button class="btn btn-light" ng-show="isUpdating" ng-click="isUpdating=false"> Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="bg-dark text-light py-5 mt-5">
+            <div class="container text-center">
+                <div class="h4 mb-3">OrderSystem</div>
+                <p class="small mb-0">2026 PickNServe. created by Sebastian D. Vosotros.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/HolyScripts/module.js"></script>
+    <script src="~/Scripts/HolyScripts/service.js"></script>
+    <script src="~/Scripts/HolyScripts/controller.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/angular-chart.min.js"></script>
+</body>
+</html>

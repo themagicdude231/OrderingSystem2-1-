@@ -1,0 +1,31 @@
+﻿.navbar-brand {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.search-bar {
+    max-width: 500px;
+    width: 100%;
+}
+.store-card {
+    width: 320px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    height: 100%;
+}
+.store-img-container {
+    height: 180px;
+    background-color: #e9ecef;
+    position: relative;
+}
+.store-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+@media (max-width: 768px) {
+    .rb-buttons .d-flex {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
