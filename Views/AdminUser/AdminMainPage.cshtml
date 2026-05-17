@@ -2,69 +2,200 @@
     Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
 }
 <link href="~/Content/1AdminMainPage.css" rel="stylesheet" />
-<main ng-init="getUserInfo(); getDashboardCardsStats(); getDashboardChartStats();">
-    <div class="d-flex justify-content-center mt-4">
+<main class="pb-5" ng-init="getUserInfo(); getDashboardCardsStats(); getDashboardChartStats();">
+
+    <div class="container-fluid d-flex justify-content-center">
+
         <div class="vendor-status w-100">
-            <div class="mt-4">
-                <h2 class="mb-1"><b>Dashboard</b></h2>
-                <p class="text-muted mb-0">Overview of vendor performance and system activity(Hello Github)</p>
+
+            <!-- HEADER -->
+            <div class="dashboard-header mt-4">
+
+                <div class="position-relative">
+
+                    <h1 class="fw-bold mb-2">
+                        Dashboard
+                    </h1>
+
+                    <p class="mb-0 text-light opacity-75">
+                        Overview of vendor performance and system activity
+                    </p>
+
+                </div>
+
             </div>
-            <div class="vendor-status-cards d-flex gap-4 flex-wrap mt-4">
-                <div class="card status-card broder">
-                    <div class="card-body">
-                        <h6 class="text-muted"><b>Total Revenue</b></h6>
-                        <h3 class="text-success">{{cardStats.totalSales}}</h3>
-                    </div>
-                </div>
+
+            <!-- STATS -->
+            <div class="vendor-status-cards">
+
                 <div class="card status-card">
                     <div class="card-body">
-                        <h6 class="text-muted"><b>Total Orders</b></h6>
-                        <h3 class="text-success">{{cardStats.totalOrders}}</h3>
+
+                        <h6>Total Revenue</h6>
+
+                        <h3 class="text-success">
+                            ₱{{cardStats.totalSales}}
+                        </h3>
+
                     </div>
                 </div>
+
                 <div class="card status-card">
                     <div class="card-body">
-                        <h6 class="text-muted"><b>Total Item Sold</b></h6>
-                        <h3 class="text-success">{{cardStats.totalItemsSold}}</h3>
+
+                        <h6>Total Orders</h6>
+
+                        <h3>
+                            {{cardStats.totalOrders}}
+                        </h3>
+
                     </div>
                 </div>
+
                 <div class="card status-card">
                     <div class="card-body">
-                        <h6 class="text-muted"><b>Total Selling Item</b></h6>
-                        <h3 class="fw-bold text-success">{{cardStats.topMenuItem}}</h3>
+
+                        <h6>Total Item Sold</h6>
+
+                        <h3>
+                            {{cardStats.totalItemsSold}}
+                        </h3>
+
                     </div>
                 </div>
+
+                <div class="card status-card">
+                    <div class="card-body">
+
+                        <h6>Top Selling Item</h6>
+
+                        <h3 class="text-truncate">
+                            {{cardStats.topMenuItem}}
+                        </h3>
+
+                    </div>
+                </div>
+
             </div>
-            <div class="vendor-status-charts d-flex gap-4 mt-4 flex-wrap mt-4">
-                <div class="card2 status-card flex-fill p-4">
+
+            <!-- CHARTS -->
+            <div class="vendor-status-charts">
+
+                <!-- PIE -->
+                <div class="card2">
+
                     <div class="card-body">
-                        <h5 class="mb-1"><b>Top Selling Menu Items</b></h5>
-                        <p class="text-muted mb-3">Most bought menu item from your store</p>
-                        <div class="chart-center">
-                            <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-options="options"></canvas>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <div>
+
+                                <h5 class="mb-1">
+                                    Top Selling Menu Items
+                                </h5>
+
+                                <p class="mb-0">
+                                    Most bought menu items from your store
+                                </p>
+
+                            </div>
+
                         </div>
-                    </div>
-                </div>
-                <div class="card2 status-card flex-fill p-4">
-                    <div class="card-body">
-                        <h5 class="mb-1"><b>Monthly Income</b></h5>
-                        <p class="text-muted mb-3">Your Income Throught the month</p>
+
                         <div class="chart-center">
-                            <canvas id="bar" class="chart chart-bar" chart-data="data2" chart-labels="labels2" chart-series="series2"></canvas>
+
+                            <canvas id="pie"
+                                    class="chart chart-pie"
+                                    chart-data="data"
+                                    chart-labels="labels"
+                                    chart-options="options">
+                            </canvas>
+
                         </div>
+
                     </div>
+
                 </div>
+
+                <!-- BAR -->
+                <div class="card2">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <div>
+
+                                <h5 class="mb-1">
+                                    Monthly Income
+                                </h5>
+
+                                <p class="mb-0">
+                                    Revenue overview throughout the month
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="chart-center">
+
+                            <canvas id="bar"
+                                    class="chart chart-bar"
+                                    chart-data="data2"
+                                    chart-labels="labels2"
+                                    chart-series="series2">
+                            </canvas>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
-            <div class="card3 status-card flex-fill p-4">
+
+            <!-- LINE -->
+            <div class="card3">
+
                 <div class="card-body">
-                    <h5 class="mb-1"><b>Daily Revenue</b></h5>
-                    <p class="text-muted mb-3">your income Throught the day</p>
-                    <canvas id="line" class="chart chart-line" chart-data="data3"
-                            chart-labels="labels3" chart-series="series3" chart-options="options"
-                            chart-dataset-override="datasetOverride" chart-click="onClick">
-                    </canvas>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <div>
+
+                            <h5 class="mb-1">
+                                Daily Revenue
+                            </h5>
+
+                            <p class="mb-0">
+                                Daily revenue performance of your store
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div style="height:320px;">
+
+                        <canvas id="line"
+                                class="chart chart-line"
+                                chart-data="data3"
+                                chart-labels="labels3"
+                                chart-series="series3"
+                                chart-options="options"
+                                chart-dataset-override="datasetOverride"
+                                chart-click="onClick">
+                        </canvas>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </main>

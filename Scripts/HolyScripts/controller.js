@@ -576,9 +576,3 @@ app.controller("OrderingSystem2Controller", function (OrderingSystem2Service, $s
 * https://www.youtube.com/watch?v=N5skN6ulO2g
 * https://stackoverflow.com/questions/38603031/how-to-send-an-image-from-frontend-to-back-end
 */
-/* [FOR NORMAL USER]
-* do the mechanism where user can see the order for the vendor to see
-*/
-/* [FOR ADMIN USER]
-* APPLY LESSON THAT SIR DISCUSS (CARDS AND GRAPHS) it can be static for now (5)
-*/
