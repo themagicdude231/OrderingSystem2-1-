@@ -20,14 +20,35 @@ namespace OrderingSystem2.Controllers
         }
         public ActionResult AdminMainPage()
         {
+            if (Session["User_ID"] == null)
+            {
+                return RedirectToAction("LoginPage", "UserAccounts");
+            }
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
             return View();
         }
         public ActionResult AdminMenuViewPage()
         {
+            if (Session["User_ID"] == null)
+            {
+                return RedirectToAction("LoginPage", "UserAccounts");
+            }
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
             return View();
         }
         public ActionResult AdminOrderViewPage()
         {
+            if (Session["User_ID"] == null)
+            {
+                return RedirectToAction("LoginPage", "UserAccounts");
+            }
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
             return View();
         }
         public JsonResult getAdminMenu()

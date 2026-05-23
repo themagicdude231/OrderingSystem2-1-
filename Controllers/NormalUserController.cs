@@ -21,15 +21,36 @@ namespace OrderingSystem2.Controllers
         }
         public ActionResult NormalMainPage()
         {
+            if (Session["User_ID"] == null)
+            {
+                return RedirectToAction("LoginPage", "UserAccounts");
+            }
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
             return View();
         }
         public ActionResult MenuPage(int Vendor_ID)
         {
             ViewBag.Vendor_ID = Vendor_ID;
+            if (Session["User_ID"] == null)
+            {
+                return RedirectToAction("LoginPage", "UserAccounts");
+            }
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
             return View();
         }
         public ActionResult NormalCartPage()
         {
+            if (Session["User_ID"] == null)
+            {
+                return RedirectToAction("LoginPage", "UserAccounts");
+            }
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
             return View();
         }
         public JsonResult getRestoInfo()
@@ -82,6 +103,10 @@ namespace OrderingSystem2.Controllers
             {
                 Session.Clear();
                 Session.Abandon();
+
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+                Response.Cache.SetNoStore();
                 return Json(new { success = true });
             }
             catch (Exception ex)

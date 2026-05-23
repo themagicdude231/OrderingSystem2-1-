@@ -3,6 +3,7 @@ using OrderingSystem2.Models.Tables;
 using OrderingSystem2.otherClasses;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -20,6 +21,21 @@ namespace OrderingSystem2.Controllers
         }
         public ActionResult LoginPage()
         {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+            if (Session["User_ID"] != null)
+            {
+                var role = Convert.ToInt32(Session["User_Role"]);
+                if (role == 0)
+                {
+                    return RedirectToAction("AdminMainPage", "AdminUser");
+                } 
+                else
+                {
+                    return RedirectToAction("NormalMainPage", "NormalUser");
+                }
+            }
             return View();
         }
         public ActionResult RegisterPage()
@@ -154,6 +170,7 @@ namespace OrderingSystem2.Controllers
                         Session["User_Fullname"] = userRole.User_Fullname;
                         Session["User_Email"] = userRole.User_Email;
                         Session["User_Address"] = userRole.User_Address;
+                        Session["User_Role"] = authInfo.User_isVendor;
                         string role;
                         if (userRole.User_isVendor)
                         {

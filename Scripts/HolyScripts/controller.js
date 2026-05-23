@@ -245,7 +245,7 @@ app.controller("OrderingSystem2Controller", function (OrderingSystem2Service, $s
                 $window.location.href = "/UserAccounts/StoreSetupPage";
                 break;
             case 2:
-                $window.location.href = "/UserAccounts/LoginPage";
+                $window.location.replace("/UserAccounts/LoginPage");
                 break;
             case 3:
                 var userInfo = sessionStorage.getItem("tempInfo");
@@ -274,10 +274,10 @@ app.controller("OrderingSystem2Controller", function (OrderingSystem2Service, $s
                 $window.location.href = "/NormalUser/MenuPage?Vendor_ID=" + Vendor_ID;
                 break;
             case 5:
-                $window.location.href = "/NormalUser/NormalMainPage";
+                $window.location.replace("/NormalUser/NormalMainPage");
                 break;
             case 6:
-                $window.location.href = "/AdminUser/AdminMainPage";
+                $window.location.replace("/AdminUser/AdminMainPage");
                 break;
             case 7:
                 $window.location.href = "/AdminUser/AdminMenuViewPage";
